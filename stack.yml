@@ -8,6 +8,6 @@ functions:
     lang: golang-http
     handler: ./basic-auth
     image: alexellis2/basic-auth:0.1
-    environment:
-      BASIC_AUTH_USERNAME: admin
-      BASIC_AUTH_PASSWORD: 4f9cc1298a380fc11dfb94c222a36df2dd5fae94
+    secrets:
+     - fn-basic-auth-username
+     - fn-basic-auth-password

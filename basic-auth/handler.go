@@ -4,11 +4,34 @@
 package function
 
 import (
+	"io/ioutil"
 	"net/http"
-	"os"
+	"strings"
 
 	"github.com/openfaas-incubator/go-function-sdk"
 )
+
+var (
+	usernameSecret string
+	passwordSecret string
+)
+
+func init() {
+
+	// optional, add error handling, or read on each request / use sync.Once()
+
+	usernameRaw, err := ioutil.ReadFile("/var/openfaas/secrets/fn-basic-auth-username")
+	if err != nil {
+		panic(err)
+	}
+	usernameSecret = strings.TrimSpace(string(usernameRaw))
+
+	passwordRaw, err := ioutil.ReadFile("/var/openfaas/secrets/fn-basic-auth-password")
+	if err != nil {
+		panic(err)
+	}
+	passwordSecret = strings.TrimSpace(string(passwordRaw))
+}
 
 // Handle a function invocation
 func Handle(req handler.Request) (handler.Response, error) {
@@ -39,8 +62,8 @@ func isAuthorized(req handler.Request) bool {
 	}
 
 	if username, password, ok := r.BasicAuth(); ok &&
-		username == os.Getenv("BASIC_AUTH_USERNAME") &&
-		password == os.Getenv("BASIC_AUTH_PASSWORD") {
+		username == usernameSecret &&
+		password == passwordSecret {
 		return true
 	}
 	return false
