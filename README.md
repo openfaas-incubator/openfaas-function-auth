@@ -31,11 +31,19 @@ Code: [basic-auth](./basic-auth)
 
 ## 2. HMAC
 
-TBH
+See: https://github.com/openfaas/workshop/blob/master/lab11.md
 
 ## 3. Shared API key
 
-TBH
+As per #1 without basic auth headers, but using an "Authorization" header.
+
+## 4. OAuth
+
+See the [auth microservice](https://github.com/openfaas/openfaas-cloud/tree/master/auth) in OpenFaaS Cloud which uses OAuth 2.0 with GitHub and GitLab.
+
+## 5. Use a reverse proxy in front of the gateway
+
+Add [Kong](https://docs.konghq.com) or similar and implement auth however you like.
 
 
 Author: Alex Ellis
