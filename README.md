@@ -3,6 +3,8 @@ openfaas-function-auth
 
 Examples of authentication in OpenFaaS Serverless functions.
 
+See here for: [SSO and OAuth for the OpenFaaS REST API](https://docs.openfaas.com/reference/authentication/#oidc-and-oauth2-for-the-openfaas-api)
+
 ## 1. Basic auth
 
 Username password protects governs access for your function. You can also use this with a web-browser, and will receive a prompt to log in.
